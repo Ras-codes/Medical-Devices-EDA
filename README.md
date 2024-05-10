@@ -301,7 +301,8 @@ for col in numerical_data:
     plt.title(f'Boxplot of {col}')
     plt.show()
 ````
-- ![image](https://github.com/Ras-codes/Medical-Devices-EDA/assets/164164852/c95e91e7-88c6-4b80-87a6-e8b50cb02667) ![image](https://github.com/Ras-codes/Medical-Devices-EDA/assets/164164852/6d9da898-2f77-46d7-996e-e7911c96e777) ![image](https://github.com/Ras-codes/Medical-Devices-EDA/assets/164164852/54d9f94e-fd3e-4094-b9b1-ff53a20e7371)
+![image](https://github.com/Ras-codes/Medical-Devices-EDA/assets/164164852/c95e91e7-88c6-4b80-87a6-e8b50cb02667) ![image](https://github.com/Ras-codes/Medical-Devices-EDA/assets/164164852/6d9da898-2f77-46d7-996e-e7911c96e777) ![image](https://github.com/Ras-codes/Medical-Devices-EDA/assets/164164852/54d9f94e-fd3e-4094-b9b1-ff53a20e7371) ![image](https://github.com/Ras-codes/Medical-Devices-EDA/assets/164164852/ca260cbf-0acb-4c18-bc9e-506383a19eca)
+
 - In a box plot, potential outliers are typically represented as individual points that fall outside the whiskers of the plot.
 - The whiskers of the box plot extend to the smallest and largest data points within a certain range from the lower and upper quartiles.
 - As per observations it seems that the potential outliers are also very near to the whiskers of the box plot.
