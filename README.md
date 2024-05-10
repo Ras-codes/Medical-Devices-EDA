@@ -138,8 +138,24 @@ Performing Exploratory Data Analysis on Medical Devices for GluMet aiming to unc
 
 
 
+# Exploratory Data Analysis
 
 
+
+
+
+
+
+
+
+### Insights from the Dataset
+
+After importing the dataset, our first step is to check if the data is imported properly, we can use `data.shape` to check the number of observations (rows) and features (columns) in the dataset
+Output will be : ![image](https://github.com/Ras-codes/Medical-Devices-EDA/assets/164164852/0e9569bc-b157-46d0-8bf1-2df2709a9dae)
+which means that the dataset contains 403 records and 21 variables, we will now use `data.head()` to display the top 5 observations of the dataset
+![image](https://github.com/Ras-codes/Medical-Devices-EDA/assets/164164852/c43779dd-7e77-446d-81ca-ce662e27d7ee)
+To understand more about the data, including the number of non-null records in each columns, their data types, the memory usage of the dataset, we use `data.info()`
+![image](https://github.com/Ras-codes/Medical-Devices-EDA/assets/164164852/873a6546-0d8e-4d4e-98e8-bcd9dc69ae5c)
 
 
 
