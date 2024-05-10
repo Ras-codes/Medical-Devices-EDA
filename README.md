@@ -304,7 +304,9 @@ for col in numerical_data:
 - ![image](https://github.com/Ras-codes/Medical-Devices-EDA/assets/164164852/c95e91e7-88c6-4b80-87a6-e8b50cb02667)
 - ![image](https://github.com/Ras-codes/Medical-Devices-EDA/assets/164164852/6d9da898-2f77-46d7-996e-e7911c96e777)
 - ![image](https://github.com/Ras-codes/Medical-Devices-EDA/assets/164164852/54d9f94e-fd3e-4094-b9b1-ff53a20e7371)
-- Avove are a few examples of box plots for visual detection of outliers.
+- In a box plot, potential outliers are typically represented as individual points that fall outside the whiskers of the plot.
+- The whiskers of the box plot extend to the smallest and largest data points within a certain range from the lower and upper quartiles.
+- As per observations it seems that the potential outliers are also very near to the whiskers of the box plot.
 
 **Potential Ouliers**
 
@@ -325,11 +327,8 @@ potential_outliers = ((numerical_data < lower_bound) | (numerical_data > upper_b
 print("Potential Outliers:\n", potential_outliers)
 ````
 - ![image](https://github.com/Ras-codes/Medical-Devices-EDA/assets/164164852/66e75ee2-df4a-476f-8cfa-65acf7dfc018)
-- In a box plot, potential outliers are typically represented as individual points that fall outside the whiskers of the plot.
-- The whiskers of the box plot extend to the smallest and largest data points within a certain range from the lower and upper quartiles.
-- As per observations it seems that the potential outliers are also very near to the whiskers of the box plot.
 
-#### We see the presence of outliers in our dataset.In medical data, outliers can represent unusual or extreme observations that deviate significantly from the typical patterns within the dataset. These observations may point to unique cases, rare conditions, or outliers that exhibit characteristics different from the majority of the data. While outliers are often considered errors in some datasets, in medical data, they may have important clinical implications.
+**We see the presence of outliers in our dataset.In medical data, outliers can represent unusual or extreme observations that deviate significantly from the typical patterns within the dataset. These observations may point to unique cases, rare conditions, or outliers that exhibit characteristics different from the majority of the data. While outliers are often considered errors in some datasets, in medical data, they may have important clinical implications.**
 
 
 
