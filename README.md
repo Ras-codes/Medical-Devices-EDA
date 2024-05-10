@@ -1,4 +1,4 @@
-![image](https://github.com/Ras-codes/Medical-Devices-EDA/assets/164164852/66a9d759-ece3-44d4-b771-c35f5d72869e)<div align="center">
+<div align="center">
   <h1>Exploratory Data Analysis on Biomedical data on Medical Devices for GluMet</h1>
 </div>
 
