@@ -164,7 +164,9 @@ Performing Exploratory Data Analysis on Medical Devices for GluMet aiming to unc
 
 ### Renaming the variable names with appropriate naming convention
 - ![image](https://github.com/Ras-codes/Medical-Devices-EDA/assets/164164852/2b2616c8-f7c9-41f6-9aa4-2590b5316716)
-- `data.columns = [i.replace('.','_') for i in data.columns]`
+````
+data.columns = [i.replace('.','_') for i in data.columns]
+````
 - Using list comprehension for replacing dots with underscores in column names of the data according to naming convention
 - ![image](https://github.com/Ras-codes/Medical-Devices-EDA/assets/164164852/0669d6a0-d227-4613-b6cb-3af99852fce3)
 
