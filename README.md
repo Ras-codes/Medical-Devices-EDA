@@ -30,13 +30,118 @@ Performing Exploratory Data Analysis on Medical Devices for GluMet aiming to unc
 
 
 
+## Dataset Description: 
+
+### Table- diabetes
 
 
+### Variables-
 
+**id**
+- Type: Categorial (interger)
+- Range: 1000 - 41756
+- Description: Unique identifier for each patient.
 
-
-
-
+**chol**
+- Type: Numerical (Float)
+- Range: 78 - 443
+- Description: Cholesterol level of the patient.
+  
+**stab.glu**
+- Type: Numerical (Integer)
+- Range: 48 - 385
+- Description: Stabilized glucose level of the patient.
+  
+**hdl**
+- Type: Numerical (Float)
+- Range: 12 - 120
+- Description: High-density lipoprotein level of the patient.
+  
+**ratio**
+- Type: Numerical (Float)
+- Range: 1.5 - 19.299
+- Description: Ratio of cholesterol to high-density lipoprotein.
+  
+**glyhb**
+- Type: Numerical (Float)
+- Range: 2.7 - 16.1
+- Description: Glycosylated hemoglobin level of the patient.
+  
+**location**
+- Type: Categorial (string)
+- Values: Buckingham, Louisa
+- Description: Location of the patient 
+  
+**age**
+- Type: Numerical (Integer) 
+- Values: 19 - 92
+- Description: Age of the patient.
+  
+**gender**
+- Type: Categorial (string)
+- Values: Male, Female
+- Description: Gender of the patient.
+  
+**height**
+- Type: Numerical (Float)
+- Range: 52 - 76
+- Description: Height of the patient.
+  
+**weight**
+- Type: Numerical (Float)
+- Range: 99 - 325
+- Description: Weight of the patient.
+  
+**frame**
+- Type: Categorial (string)
+- Values: small, medium, large
+- Description: Body frame size
+  
+**bp.1s**
+- Type: Numerical (Float)
+- Range: 90 - 250
+- Description: First systolic blood pressure reading.
+  
+**bp.1d**
+- Type: Numerical (Float)
+- Range: 48 - 124
+- Description: First diastolic blood pressure reading.
+  
+**bp.2s**
+- Type: Numerical (Float)
+- Range: 110 - 238
+- Description: Second systolic blood pressure reading.
+  
+**bp.2d**
+- Type: Numerical (Float)
+- Range: 60 - 124
+- Description: Second diastolic blood pressure reading.
+  
+**waist**
+- Type: Numerical (Float)
+- Range: 26 - 56
+- Description: Waist circumference of the patient.
+  
+**hip**
+- Type: Numerical (Float)
+- Range: 30 - 64
+- Description: Hip circumference of the patient.
+  
+**time.ppn**
+- Type: Numerical (Float)
+- Range: 5 - 1560
+- Description: Time when labs were drawn.
+  
+**diagnosis**
+- Type: Categorial (string)
+- Values: Non-Diabetic, Pre-Diabetes, Diabetic
+- Description: Diagnosis of the patient for diabetes
+  
+**result**
+- Type: Numerical (Float)
+- Values: 0, 1
+- Description: Result of the diagnosis (0 for Non-Diabetic, 1 for Diabetic).
+  
 
 
 
