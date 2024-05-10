@@ -1,4 +1,4 @@
-<div align="center">
+![image](https://github.com/Ras-codes/Medical-Devices-EDA/assets/164164852/66a9d759-ece3-44d4-b771-c35f5d72869e)<div align="center">
   <h1>Exploratory Data Analysis on Biomedical data on Medical Devices for GluMet</h1>
 </div>
 
@@ -330,40 +330,113 @@ print("Potential Outliers:\n", potential_outliers)
 **We see the presence of outliers in our dataset.In medical data, outliers can represent unusual or extreme observations that deviate significantly from the typical patterns within the dataset. These observations may point to unique cases, rare conditions, or outliers that exhibit characteristics different from the majority of the data. While outliers are often considered errors in some datasets, in medical data, they may have important clinical implications.**
 
 
+# ------------------------------------------------------------------------------
 
 
+# Visualizing Data:
+
+## Univariate analysis:
+Univariate analysis helps in understanding the distribution and characteristics of a single variable, which helps in pattern recognition. The chosen visualization method depends on the nature of the data — bar charts for discrete (numerical) data, histograms for continuous (numerical) data, and pie charts for categorical data.
+
+### Distribution of patients by their age-
+Here we will be making bins of age groups to make it an easily readable graph
+````
+age_bins = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
+labels = ['0-10', '11-20', '21-30', '31-40', '41-50', '51-60', '61-70', '71-80', '81-90', '91-100']
+
+data['age_group'] = pd.cut(data['age'], bins=age_bins, labels=labels)
+
+data['age_group'].value_counts().sort_index().plot(kind='bar', color='skyblue')
+plt.title("Distribution of patients by age group")
+plt.xlabel("Age Group")
+plt.ylabel("Number of patients")
+````
+![image](https://github.com/Ras-codes/Medical-Devices-EDA/assets/164164852/3bab1622-dd15-41ac-b11b-c63c56a84a25)
+
+### Distribution of patients by their location-
+````
+colors = sns.color_palette('GnBu')
+plt.pie(data['location'].value_counts(), labels=['Louisa','Buckingham'], autopct='%1.1f%%', startangle=140, colors=colors)
+plt.title('Distribution of Patients by Location')
+plt.show()
+````
+![image](https://github.com/Ras-codes/Medical-Devices-EDA/assets/164164852/61e6a42b-0f42-466a-a9d1-6b05e3a1aee3)
+
+### Distribution of patients by their gender-
+````
+colors = sns.color_palette('Blues')
+plt.pie(data['gender'].value_counts(), labels=['Female', 'Male'], autopct='%1.1f%%', startangle=140, colors=colors)
+plt.title('Distribution of Patients by Gender')
+plt.show()
+````
+![image](https://github.com/Ras-codes/Medical-Devices-EDA/assets/164164852/763723b0-762a-4660-bf01-31a0bdeaeefb)
+
+### Distribution of patients by diagnosis-
+````
+plt.pie(data['diagnosis'].value_counts(), labels=['Non-Diabetic', 'Diabetic', 'Pre-Diabetic'], autopct='%1.1f%%', startangle=140, colors=['thistle', 'pink', 'lavender'])
+plt.title('Distribution of Patients by Diagnosis')
+plt.show()
+````
+![image](https://github.com/Ras-codes/Medical-Devices-EDA/assets/164164852/f6dab837-2425-4709-8aae-314350690dbb)
+
+### Distribution of 'glyhb' in patients-
+````
+sns.histplot(data['glyhb'], bins=15, kde=True, color='lightsteelblue')
+````
+![image](https://github.com/Ras-codes/Medical-Devices-EDA/assets/164164852/90a98fb1-590d-48e7-a833-14774ede963b)
+
+### Distribution of 'chol' in patients
+````
+sns.histplot(data['chol'], bins=15, kde=True, color='lightsalmon')
+````
+![image](https://github.com/Ras-codes/Medical-Devices-EDA/assets/164164852/36643896-f5bf-478c-b1e4-03aa0bbd8073)
+
+### Distribution of 'ratio' in patients
+````
+sns.histplot(data['ratio'], bins=15, kde=True, color='peachpuff')
+````
+![image](https://github.com/Ras-codes/Medical-Devices-EDA/assets/164164852/fb16e5d6-ae84-4bb0-9418-71d37a9ef2be)
+
+### Distribution of 'time_ppn' in patients
+````
+sns.histplot(data['time_ppn'], bins=15, kde=True, color='lightcoral')
+````
+![image](https://github.com/Ras-codes/Medical-Devices-EDA/assets/164164852/2dfb876e-7c54-4952-ba63-329ca626ca8a)
 
 
+## Bivariate and Multivariate analysis:
 
+Bivariate analysis examines relationships between pairs of variables using scatter plots, line charts for trends, box plots for distribution, and heatmaps for correlations. These visualizations are crucial for uncovering connections and dependencies in the dataset. Box plots provide a summary of key statistical measures, including the minimum value, maximum value, median, and quartiles. Pair plots helps to explore relationships between multiple variables simultaneously. This visualization technique creates a grid of plots, each revealing the connection between two variables.
 
+### Distribution of height and weight with box plot 
+````
+plt.figure(figsize=(10, 6))
+sns.boxplot(x='height', y='weight', data=data, palette='viridis')
+plt.title('Distribution of height and weight')
+plt.xlabel('height')
+plt.ylabel('weight')
+plt.show()
+````
+![image](https://github.com/Ras-codes/Medical-Devices-EDA/assets/164164852/b5bf39de-f864-43fe-af70-907410ec2992)
 
+### Distribution of glyhb against stab.glu for diagnosis with scatter plot
+````
+sns.scatterplot(x=data.stab_glu,y=data.glyhb, hue=data['diagnosis'])
+plt.xlabel('stab.glu')
+plt.ylabel('glyhb')
+plt.title('Scatter plot of glyhb against stab.glu')
+plt.show
+````
+![image](https://github.com/Ras-codes/Medical-Devices-EDA/assets/164164852/e5de16d8-e237-48f0-87b0-5df39595c0c4)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+### Distribution of chol, stab_glu, hdl, ratio, glyhb, bp_1s, bp_1d with pair plot
+````
+selected_columns = ['chol', 'stab_glu', 'hdl', 'ratio', 'glyhb', 'bp_1s', 'bp_1d']
+sns.pairplot(data[selected_columns])
+plt.show()
+````
+![image](https://github.com/Ras-codes/Medical-Devices-EDA/assets/164164852/2e1be90b-4071-4b6e-ab0a-d48a4dea4202)
+![image](https://github.com/Ras-codes/Medical-Devices-EDA/assets/164164852/4e66c1b4-1d74-4c0f-b34e-9f9b43c347b7)
 
 
 
