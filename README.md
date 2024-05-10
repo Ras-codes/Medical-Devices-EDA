@@ -140,16 +140,15 @@ Performing Exploratory Data Analysis on Medical Devices for GluMet aiming to unc
 
 # Exploratory Data Analysis
 
+
+
+
+
+
+
 # ------------------------------------------------------------------------------
 
-
-
-
-
-
-
-
-## Insights from the Dataset
+# Insights from the Dataset
 
 - After importing the dataset, our first step is to check if the data is imported properly, we can use `data.shape` to check the number of observations (rows) and features (columns) in the dataset
 - Output will be : ![image](https://github.com/Ras-codes/Medical-Devices-EDA/assets/164164852/0e9569bc-b157-46d0-8bf1-2df2709a9dae)
@@ -158,28 +157,206 @@ Performing Exploratory Data Analysis on Medical Devices for GluMet aiming to unc
 - ![image](https://github.com/Ras-codes/Medical-Devices-EDA/assets/164164852/c43779dd-7e77-446d-81ca-ce662e27d7ee)
 - To understand more about the data, including the number of non-null records in each columns, their data types, the memory usage of the dataset, we use `data.info()`
 - ![image](https://github.com/Ras-codes/Medical-Devices-EDA/assets/164164852/873a6546-0d8e-4d4e-98e8-bcd9dc69ae5c)
+- Checking cardinality / uniqueness of data with `data.nunique()`
+- Count of distinct values in each column
+- ![image](https://github.com/Ras-codes/Medical-Devices-EDA/assets/164164852/78dbf626-bf40-4bf1-a7e0-d380280bf67a)
+
 
 # ------------------------------------------------------------------------------
 
-## Data Preparation:
 
-### Renaming the variable names with appropriate naming convention-
+# Data Preparation:
+
+Data can have different sorts of quality issues. It is essential that you clean and preperate your data to be analyzed.  Therefore, these issues must be addressed before data can be analyzed.
+
+### Checking the variable names for appropriate naming convention-
 - ![image](https://github.com/Ras-codes/Medical-Devices-EDA/assets/164164852/2b2616c8-f7c9-41f6-9aa4-2590b5316716)
+- A lot of these variables have dots in inbetween the names which is not an appropriate naming convention
+- Using list comprehension for replacing dots with underscores in column names of the data.
 ````
 data.columns = [i.replace('.','_') for i in data.columns]
 ````
-- Using list comprehension for replacing dots with underscores in column names of the data.
 - ![image](https://github.com/Ras-codes/Medical-Devices-EDA/assets/164164852/0669d6a0-d227-4613-b6cb-3af99852fce3)
 
 ### Datatype Conversion-
-- ![image](https://github.com/Ras-codes/Medical-Devices-EDA/assets/164164852/014fea95-0ae6-4c87-bc0e-6cc478cde8a6)
+- Converting datatype of stab.glu from int to float and datatype of id from int to object as it is a categorical variable.
 ````
 data['stab_glu'] = data['stab_glu'].astype('float')
 data['id'] = data['id'].astype('object')
 ````
 - ![image](https://github.com/Ras-codes/Medical-Devices-EDA/assets/164164852/995964c8-2aaa-4a39-b85a-36a2c1c690fe)
 
+### Checking Data Duplicacy-
+- checking if there are any duplicate records in the dataset with `data.duplicated().value_counts()`
+- ![image](https://github.com/Ras-codes/Medical-Devices-EDA/assets/164164852/db73fc1b-23c4-4fe9-8d3f-e0129705be14)
+- It can be seen that there is no dupicacy in our data.
+
+### Renaming variables-
+- Renaming column 'id' with 'ID'
+- renaming variables if needed with `data = data.rename(columns = {'id':'ID'})`
+- ![image](https://github.com/Ras-codes/Medical-Devices-EDA/assets/164164852/c4fd93a0-a581-4291-b8c3-4977c526789e)
+
+
 # ------------------------------------------------------------------------------
+
+
+# Handling Missing Values:
+
+Next step is to check for missing values in the dataset. It is very common for a dataset to have missing values.
+
+- `data.isna().sum()` isna() is used for detecting missing values in the dataframe, paired with sum() will return the number of missing values in each column.
+- ![image](https://github.com/Ras-codes/Medical-Devices-EDA/assets/164164852/96e1f60e-5c1f-48fd-a32d-8038577dee8d)
+- There are many duplicates in the data which needs to be treated (filled with values)
+- Creating a UDF which can automate the missing value treatment.
+- Adding a condition for bp_2s and bp_2d so that it will pick the values of corresponding bp_1s and bp_1d instead of mean values of the bp_2s and bp_2d column.
+````
+def miss_value_treat(s, bp_1s=None, bp_1d=None):
+    if s.dtype == 'O':
+        s = s.fillna(s.mode())
+    elif s.isnull().any():
+        if s.name == 'bp_2s':
+            s = s.fillna(bp_1s) if bp_1s is not None else s.fillna(s.median())
+        elif s.name == 'bp_2d':
+            s = s.fillna(bp_1d) if bp_1d is not None else s.fillna(s.median())
+        else:
+            s = s.fillna(s.median())
+    return s
+````
+- Applying the miss_value_treat UDF to our data
+````
+data = data.apply(miss_value_treat, args=(data['bp_1s'].median(), data['bp_1d'].median()))
+````
+- ![image](https://github.com/Ras-codes/Medical-Devices-EDA/assets/164164852/2d139d8e-e987-479e-bb87-624c049c01be)
+- As per observations 'diagnosis' column is dependent on 'glyhb' readings, hence defining a seperate function for diagnosis column to fill with values since if glyhb is blank diagnosis column will also remain blank
+- First, lets see the relation between glyhb and diagnosis variables
+````
+plt.figure(figsize=(10, 6))
+sns.boxplot(x='diagnosis', y='glyhb', data=data, palette='deep')
+plt.title('Distribution of Glycosylated Hemoglobin (glyhb) by Diagnosis')
+plt.xlabel('Diagnosis')
+plt.ylabel('Glycosylated Hemoglobin (glyhb)')
+plt.show()
+````
+- ![image](https://github.com/Ras-codes/Medical-Devices-EDA/assets/164164852/1296e6cd-b43c-4ee4-bbf8-23953a67fc16)
+- This boxplot shows that if values in glyhb are less than 5.5 then diagnosis will be 'Non-Diabetic', if glyhb values are between 5.6 to 6.4 then diagnosis will be 'Pre-Diabetes' and it the glyhb values are greater than 6.5 then diagnosis will be 'Diabetic'.
+- So, creating a new function to fill missing values in 'diagnosis' based on 'glyhb' values
+````
+def fill_diagnosis(row):
+    if row['glyhb'] <= 5.5:
+        return 'Non-Diabetic'
+    elif 5.6 <= row['glyhb'] <= 6.4:
+        return 'Pre-Diabetes'
+    else:
+        return 'Diabetic'
+````
+- Applying the function to diagnosis column only
+````
+data['diagnosis'] = data.apply(fill_diagnosis, axis=1)
+````
+- ![image](https://github.com/Ras-codes/Medical-Devices-EDA/assets/164164852/0c0ce472-2872-42fc-978b-577bd53afc48)
+- Now we can see that there are 0 missing values in our data!
+
+
+# ------------------------------------------------------------------------------
+
+
+# Data Preprocessing:
+
+### Dividing the dataset into 2 datasets - categorical values and numerical values
+
+**For categorical dataset**
+````
+cat = [var for var in data.columns if data[var].dtype == 'O']
+categorical_data = data[cat]
+categorical_data.head(2)
+````
+- ![image](https://github.com/Ras-codes/Medical-Devices-EDA/assets/164164852/92eb0ea4-c13d-462f-9233-b39c5b281d62)
+
+**For numerical dataset**
+````
+num = [var for var in data.columns if data[var].dtype != 'O']
+numerical_data = data[num]
+numerical_data.head(2)
+````
+- ![image](https://github.com/Ras-codes/Medical-Devices-EDA/assets/164164852/ff53eb2d-9c76-424b-aa67-5f3a29e0a069)
+
+**For merge**
+- Later for merging if needed, a common column is needed between the 2 datasets, hence adding 'ID' column to categorical dataset
+`categorical_data['ID'] = data['ID']`
+- ![image](https://github.com/Ras-codes/Medical-Devices-EDA/assets/164164852/3bf82e6b-9398-482a-aeea-fa485a766d74)
+
+
+# ------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
