@@ -140,6 +140,7 @@ Performing Exploratory Data Analysis on Medical Devices for GluMet aiming to unc
 
 # Exploratory Data Analysis
 
+# ------------------------------------------------------------------------------
 
 
 
@@ -158,7 +159,7 @@ Performing Exploratory Data Analysis on Medical Devices for GluMet aiming to unc
 - To understand more about the data, including the number of non-null records in each columns, their data types, the memory usage of the dataset, we use `data.info()`
 - ![image](https://github.com/Ras-codes/Medical-Devices-EDA/assets/164164852/873a6546-0d8e-4d4e-98e8-bcd9dc69ae5c)
 
-
+# ------------------------------------------------------------------------------
 
 ## Data Preparation:
 
@@ -178,7 +179,7 @@ data['id'] = data['id'].astype('object')
 ````
 - ![image](https://github.com/Ras-codes/Medical-Devices-EDA/assets/164164852/995964c8-2aaa-4a39-b85a-36a2c1c690fe)
 
-
+# ------------------------------------------------------------------------------
 
 
 
