@@ -140,7 +140,7 @@ Performing Exploratory Data Analysis on Medical Devices for GluMet aiming to unc
 
 # Exploratory Data Analysis
 
-This repository contains code and resources forExploratory Data Analysis on Biomedical data on Medical Devices project. The project demonstrates fundamental data manipulation techniques using Python programming language. It covers essential operations such as data loading, cleaning, handling missing values, outliers detection, transformation, analysis and data visualization using popular libraries like Pandas, NumPy, Matplotlib and Seaborn. The repository includes Jupyter notebooks with step-by-step explanations, dataset for practice, and examples showcasing various data manipulation tasks and data visualization graphs.
+This repository contains code and resources for Exploratory Data Analysis on Biomedical data on Medical Devices project. The project demonstrates fundamental data manipulation techniques using Python programming language. It covers essential operations such as data loading, cleaning, handling missing values, outliers detection, transformation, analysis and data visualization using popular libraries like Pandas, NumPy, Matplotlib and Seaborn. The repository includes Jupyter notebooks with step-by-step explanations, dataset for practice, and examples showcasing various data manipulation tasks and data visualization graphs.
 
 
 # ------------------------------------------------------------------------------
@@ -305,7 +305,7 @@ for col in numerical_data:
 - ![image](https://github.com/Ras-codes/Medical-Devices-EDA/assets/164164852/6d9da898-2f77-46d7-996e-e7911c96e777)
 - ![image](https://github.com/Ras-codes/Medical-Devices-EDA/assets/164164852/54d9f94e-fd3e-4094-b9b1-ff53a20e7371)
 - Avove are a few examples of box plots for visual detection of outliers.
-- 
+
 **Potential Ouliers**
 
 - Calculating interquartile range (IQR) for numerical data
@@ -329,7 +329,7 @@ print("Potential Outliers:\n", potential_outliers)
 - The whiskers of the box plot extend to the smallest and largest data points within a certain range from the lower and upper quartiles.
 - As per observations it seems that the potential outliers are also very near to the whiskers of the box plot.
 
-# We see the presence of outliers in our dataset.In medical data, outliers can represent unusual or extreme observations that deviate significantly from the typical patterns within the dataset. These observations may point to unique cases, rare conditions, or outliers that exhibit characteristics different from the majority of the data. While outliers are often considered errors in some datasets, in medical data, they may have important clinical implications.
+#### We see the presence of outliers in our dataset.In medical data, outliers can represent unusual or extreme observations that deviate significantly from the typical patterns within the dataset. These observations may point to unique cases, rare conditions, or outliers that exhibit characteristics different from the majority of the data. While outliers are often considered errors in some datasets, in medical data, they may have important clinical implications.
 
 
 
