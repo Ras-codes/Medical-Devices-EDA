@@ -40,7 +40,6 @@ Performing Exploratory Data Analysis on Medical Devices for GluMet aiming to unc
 **id**
 - Type: Categorial (interger)
 - Range: 1000 - 41756
-- Description: Unique identifier for each patient.
 
 **chol**
 - Type: Numerical (Float)
@@ -70,32 +69,26 @@ Performing Exploratory Data Analysis on Medical Devices for GluMet aiming to unc
 **location**
 - Type: Categorial (string)
 - Values: Buckingham, Louisa
-- Description: Location of the patient 
   
 **age**
 - Type: Numerical (Integer) 
 - Values: 19 - 92
-- Description: Age of the patient.
   
 **gender**
 - Type: Categorial (string)
 - Values: Male, Female
-- Description: Gender of the patient.
   
 **height**
 - Type: Numerical (Float)
 - Range: 52 - 76
-- Description: Height of the patient.
   
 **weight**
 - Type: Numerical (Float)
 - Range: 99 - 325
-- Description: Weight of the patient.
   
 **frame**
 - Type: Categorial (string)
 - Values: small, medium, large
-- Description: Body frame size
   
 **bp.1s**
 - Type: Numerical (Float)
@@ -120,12 +113,10 @@ Performing Exploratory Data Analysis on Medical Devices for GluMet aiming to unc
 **waist**
 - Type: Numerical (Float)
 - Range: 26 - 56
-- Description: Waist circumference of the patient.
   
 **hip**
 - Type: Numerical (Float)
 - Range: 30 - 64
-- Description: Hip circumference of the patient.
   
 **time.ppn**
 - Type: Numerical (Float)
