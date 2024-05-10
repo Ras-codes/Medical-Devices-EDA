@@ -11,6 +11,5 @@ Performing Exploratory Data Analysis on Medical Devices for GluMet aiming to unc
 
 
 <div align="center">
-  <img src="![image](https://github.com/Ras-codes/Medical-Devices-EDA/assets/164164852/e75db0a3-b1ca-4886-b3aa-751d6abf6415)
-">
+  <img src="![image](https://github.com/Ras-codes/Medical-Devices-EDA/assets/164164852/8fb9cdc0-240f-4b8d-9251-4f448e17de0f)">
 </div>
